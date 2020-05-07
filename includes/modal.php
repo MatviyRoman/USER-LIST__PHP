@@ -1,3 +1,12 @@
+<?php
+$id = trim(filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT));
+$sql = 'SELECT * FROM `users` WHERE `id` = :id';
+$query = $pdo->prepare($sql);
+$query->execute(['id' => $id]);
+$user = $query->fetch(PDO::FETCH_OBJ);
+var_dump($user);
+?>
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
@@ -10,6 +19,7 @@
                 </button>
             </div>
             <form method="post" class="post">
+                <h1><?=$user->id?></h1>
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="first-name" class="col-form-label">First name:</label>
@@ -41,7 +51,14 @@
                     <p class="error" id="error"></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success user">Save</button>
+                    <div class="add_text">
+                        <!-- <input type="hidden" name="add_user" id="id" value="<?=$user->id?>"> -->
+                        <button type="button" class="btn btn-success user" id="add_user">Save</button>
+                    </div>
+                    <div class="delete_text">
+                        <input type="hidden" name="del_user" id="id" value="<?=$user->id?>">
+                        <button type="button" class="btn btn-success user" id="del_user">Save</button>
+                    </div>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </form>

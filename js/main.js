@@ -35,11 +35,9 @@ $('#status').click(function () {
 
 
 $('.add').click(function () {
-    $('.form-group').show();
+    console.log("click .add");
+    $('.form-group, .add_text').show();
     $('.delete_text').hide();
-    $('.user').attr('id', 'add_user');
-    $('#del_user').attr('id', 'add_user');
-    $('#edit_user').attr('id', 'add_user');
     $('#add_user').is(function () {
         $(this).text('Save');
         $(this).attr('class', 'btn btn-success');
@@ -49,6 +47,46 @@ $('.add').click(function () {
 
 
 $('.edit').click(function () {
+    $(this).is(function () {
+        const id = $('.edit').val();
+        console.log("click .edit id");
+        console.log(id);
+    });
+
+
+    $.ajax({
+
+        url: "/includes/modal.php",
+        type: "POST",
+        cache: false,
+        data: {
+            user_id: id
+        },
+        dataType: "html",
+        // beforeSend: function() {
+
+        // },
+        // success: function (data) {
+        //     if (data == "OK") {
+        //         $("#add_user").show(function () {
+        //             event.preventDefault();
+        //             $(this)
+        //                 .text("Ok. User add")
+        //                 .addClass("success")
+        //                 .attr("id", "success");
+        //             // .prop("id", "success");
+        //         });
+        //         $("#error").hide();
+        //     } else {
+        //         $("#error").show(function () {
+        //             $(this).text(data);
+        //             console.log("error");
+        //         });
+        //     }
+        // },
+    });
+
+
     $('.form-group').show();
     $('.delete_text').hide();
     $('.user').attr('id', 'edit_user');
@@ -67,9 +105,6 @@ $('.del').click(function () {
     $('.form-group').hide();
     $('.error').hide();
     $('.delete_text').show();
-    $('.user').attr('id', 'del_user');
-    $('#add_user').attr('id', 'del_user');
-    $('#edit_user').attr('id', 'del_user');
     $('#success').attr('id', 'del_user');
     $('#del_user').is(function () {
         $(this).text('Delete');
@@ -125,10 +160,7 @@ $("#add_user").click(function () {
 
 
 $("#del_user").click(function () {
-    // const fname = $('#first_name').val();
-    // const lname = $('#last_name').val();
-    // const status = $('#status').val();
-    // const role = $("#role").val();
+    const id = $('#id').val();
     console.log("click #del_user");
 
     $.ajax({
@@ -137,21 +169,18 @@ $("#del_user").click(function () {
         type: "POST",
         cache: false,
         data: {
-            first_name: fname,
-            last_name: lname,
-            status: status,
-            role: role,
+            id: id,
         },
         dataType: "html",
         // beforeSend: function() {
 
         // },
         success: function (data) {
-            if (data == "OK") {
-                $("#add_user").show(function () {
+            if (data == "DELETE") {
+                $("#del_user").show(function () {
                     event.preventDefault();
                     $(this)
-                        .text("Ok. User add")
+                        .text("Ok. User delete")
                         .addClass("success")
                         .attr("id", "success");
                     // .prop("id", "success");
@@ -166,6 +195,9 @@ $("#del_user").click(function () {
         },
     });
 });
+
+
+
 
 // $("#checkbox").click(function () {
 //     const fname = $("#first_name").val();

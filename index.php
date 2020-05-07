@@ -55,12 +55,11 @@ while ($row = $query->fetch(PDO::FETCH_OBJ)) {?>
                                     <tr>
                                         <td>
                                             <input type="checkbox" name="checkbox[]"
-                                                class="checkbox-<?php echo $row->id ?> check"
-                                                value="<?php echo $row->id ?>">
+                                                class="checkbox-<?=$row->id?> check" value="<?=$row->id?>">
                                         </td>
                                         <td>
-                                            <a href="?id=<?php echo $row->id ?>"
-                                                class="user-link"><?php echo $row->first_name, ' ', $row->last_name ?></a>
+                                            <a href="?id=<?=$row->id?>"
+                                                class="user-link"><?=$row->first_name, ' ', $row->last_name?></a>
                                         </td>
                                         <td>
                                             <?php if ($row->status) {?>
@@ -77,26 +76,32 @@ while ($row = $query->fetch(PDO::FETCH_OBJ)) {?>
                                             <?php }?>
                                         </td>
                                         <td style="width: 20%;">
-                                            <a href="?edit=<?php echo $row->id ?>" class="table-link edit"
-                                                data-toggle="modal" data-target="#exampleModalCenter"
-                                                data-whatever="редагування користувача">
-                                                <span class="fa-stack">
-                                                    <i class="fa fa-square
+                                            <form method="post">
+                                                <!-- <input type="submit" value="ttt"> -->
+                                                <a href="?edit=<?=$row->id?>" class="table-link edit"
+                                                    data-toggle="modal" data-target="#exampleModalCenter"
+                                                    data-whatever="редагування користувача id=<?=$row->id?>"
+                                                    value="<?=$row->id?>">
+                                                    <input type="hidden" name="user_id" class="user_id"
+                                                        value="<?=$row->id?>">
+                                                    <span class="fa-stack">
+                                                        <i class="fa fa-square
                                                         fa-stack-2x"></i>
-                                                    <i class="fa fa-pencil
+                                                        <i class="fa fa-pencil
                                                         fa-stack-1x fa-inverse"></i>
-                                                </span>
-                                            </a>
-                                            <a href="?del=<?php echo $row->id ?>" class="table-link
+                                                    </span>
+                                                </a>
+                                                <a href="?del=<?=$row->id?>" class="table-link
                                                 danger del" data-toggle="modal" data-target="#exampleModalCenter"
-                                                data-whatever="видалення користувача">
-                                                <span class="fa-stack">
-                                                    <i class="fa fa-square
+                                                    data-whatever="видалення користувача id=<?=$row->id?>">
+                                                    <span class="fa-stack">
+                                                        <i class="fa fa-square
                                                         fa-stack-2x"></i>
-                                                    <i class="fa fa-trash-o
+                                                        <i class="fa fa-trash-o
                                                         fa-stack-1x fa-inverse"></i>
-                                                </span>
-                                            </a>
+                                                    </span>
+                                                </a>
+                                            </form>
                                         </td>
                                     </tr>
                                     <?php
