@@ -34,9 +34,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/modal.php';
                                                 <div class="custom-control
                                                     custom-checkbox">
                                                     <input type="checkbox" name="checkbox_all[]" id="checkbox_all"
-                                                        value="<?php echo $row->id ?>">
-                                                    <label for="checkbox_all">all
-                                                        checkbox</label>
+                                                        value="<?=$row->id?>">
+                                                    <!-- <label for="checkbox_all">select all</label> -->
                                                 </div>
                                             </span>
                                         </th>
@@ -76,32 +75,26 @@ while ($row = $query->fetch(PDO::FETCH_OBJ)) {?>
                                             <?php }?>
                                         </td>
                                         <td style="width: 20%;">
-                                            <form method="post">
-                                                <!-- <input type="submit" value="ttt"> -->
-                                                <a href="?edit=<?=$row->id?>" class="table-link edit"
-                                                    data-toggle="modal" data-target="#exampleModalCenter"
-                                                    data-whatever="редагування користувача id=<?=$row->id?>"
-                                                    value="<?=$row->id?>">
-                                                    <input type="hidden" name="user_id" class="user_id"
-                                                        value="<?=$row->id?>">
-                                                    <span class="fa-stack">
-                                                        <i class="fa fa-square
-                                                        fa-stack-2x"></i>
-                                                        <i class="fa fa-pencil
-                                                        fa-stack-1x fa-inverse"></i>
-                                                    </span>
-                                                </a>
-                                                <a href="?del=<?=$row->id?>" class="table-link
-                                                danger del" data-toggle="modal" data-target="#exampleModalCenter"
-                                                    data-whatever="видалення користувача id=<?=$row->id?>">
-                                                    <span class="fa-stack">
-                                                        <i class="fa fa-square
-                                                        fa-stack-2x"></i>
-                                                        <i class="fa fa-trash-o
-                                                        fa-stack-1x fa-inverse"></i>
-                                                    </span>
-                                                </a>
-                                            </form>
+                                            <a href="?edit=<?=$row->id?>" class="table-link edit" data-toggle="modal"
+                                                data-target="#exampleModalCenter"
+                                                data-whatever="User editing id=<?=$row->id?>" data-id="<?=$row->id?>">
+                                                <span class="fa-stack">
+                                                    <i class="fa fa-square
+                                                    fa-stack-2x"></i>
+                                                    <i class="fa fa-pencil
+                                                    fa-stack-1x fa-inverse"></i>
+                                                </span>
+                                            </a>
+                                            <a href="?del=<?=$row->id?>" class="table-link
+                                            danger del" data-toggle="modal" data-target="#exampleModalCenter"
+                                                data-whatever="Deleting user id=<?=$row->id?>" data-id="<?=$row->id?>">
+                                                <span class="fa-stack">
+                                                    <i class="fa fa-square
+                                                    fa-stack-2x"></i>
+                                                    <i class="fa fa-trash-o
+                                                    fa-stack-1x fa-inverse"></i>
+                                                </span>
+                                            </a>
                                         </td>
                                     </tr>
                                     <?php

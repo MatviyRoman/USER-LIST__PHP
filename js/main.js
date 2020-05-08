@@ -1,13 +1,14 @@
 $('#exampleModalCenter').on('show.bs.modal', function (event) {
-    let button = $(event.relatedTarget)
-    let recipient = button.data('whatever')
-    $(this).find('.modal-title').text('Форма ' + recipient)
-    // $(this).find('.modal-body input').val(recipient)
+    let button = $(event.relatedTarget);
+    let recipient = button.data('whatever');
+    let id = button.data('id');
+    $(this).find('.modal-title').text(recipient);
+    $(this).find('.hidden').val(id);
 });
 
 
 
-$("#checkbox_all").click(function () {
+$('#checkbox_all').click(function () {
     $('.check').not(this).prop('checked', this.checked);
 });
 
@@ -37,7 +38,7 @@ $('#status').click(function () {
 $('.add').click(function () {
     console.log("click .add");
     $('.form-group, .add_text').show();
-    $('.delete_text').hide();
+    $('.edit_text, .delete_text').hide();
     $('#add_user').is(function () {
         $(this).text('Save');
         $(this).attr('class', 'btn btn-success');
@@ -47,52 +48,9 @@ $('.add').click(function () {
 
 
 $('.edit').click(function () {
-    $(this).is(function () {
-        const id = $('.edit').val();
-        console.log("click .edit id");
-        console.log(id);
-    });
-
-
-    $.ajax({
-
-        url: "/includes/modal.php",
-        type: "POST",
-        cache: false,
-        data: {
-            user_id: id
-        },
-        dataType: "html",
-        // beforeSend: function() {
-
-        // },
-        // success: function (data) {
-        //     if (data == "OK") {
-        //         $("#add_user").show(function () {
-        //             event.preventDefault();
-        //             $(this)
-        //                 .text("Ok. User add")
-        //                 .addClass("success")
-        //                 .attr("id", "success");
-        //             // .prop("id", "success");
-        //         });
-        //         $("#error").hide();
-        //     } else {
-        //         $("#error").show(function () {
-        //             $(this).text(data);
-        //             console.log("error");
-        //         });
-        //     }
-        // },
-    });
-
-
-    $('.form-group').show();
-    $('.delete_text').hide();
-    $('.user').attr('id', 'edit_user');
-    $('#add_user').attr('id', 'edit_user');
-    $('#del_user').attr('id', 'edit_user');
-    $('#success').attr('id', 'edit_user');
+    console.log("click .edit");
+    $('.form-group, .edit_text').show();
+    $('.add_text, .delete_text').hide();
     $('#edit_user').is(function () {
         $(this).text('Save changes');
         $(this).attr('class', 'btn btn-success');
@@ -102,10 +60,9 @@ $('.edit').click(function () {
 
 
 $('.del').click(function () {
-    $('.form-group').hide();
-    $('.error').hide();
+    console.log("click .del");
+    $('.form-group, .add_text, .edit_text').hide();
     $('.delete_text').show();
-    $('#success').attr('id', 'del_user');
     $('#del_user').is(function () {
         $(this).text('Delete');
         $(this).attr('class', 'btn btn-danger');
@@ -122,7 +79,6 @@ $("#add_user").click(function () {
     console.log("click #add_user");
 
     $.ajax({
-
         url: "ajax/add_user.php",
         type: "POST",
         cache: false,
@@ -145,6 +101,52 @@ $("#add_user").click(function () {
                         .addClass("success")
                         .attr("id", "success");
                     // .prop("id", "success");
+                    setInterval('refreshPage()', 1000);
+                });
+                $("#error").hide();
+            } else {
+                $("#error").show(function () {
+                    $(this).text(data);
+                    console.log("error");
+                });
+            }
+        },
+    });
+});
+
+
+
+$("#edit_user").click(function () {
+    const fname = $('#first_name').val();
+    const lname = $('#last_name').val();
+    const status = $('#status').val();
+    const role = $("#role").val();
+    console.log("click #add_user");
+
+    $.ajax({
+        url: "ajax/edit_user.php",
+        type: "POST",
+        cache: false,
+        data: {
+            first_name: fname,
+            last_name: lname,
+            status: status,
+            role: role,
+        },
+        dataType: "html",
+        // beforeSend: function() {
+
+        // },
+        success: function (data) {
+            if (data == "OK") {
+                $("#add_user").show(function () {
+                    event.preventDefault();
+                    $(this)
+                        .text("Ok. User add")
+                        .addClass("success")
+                        .attr("id", "success");
+                    // .prop("id", "success");
+                    setInterval('refreshPage()', 1000);
                 });
                 $("#error").hide();
             } else {
@@ -160,8 +162,11 @@ $("#add_user").click(function () {
 
 
 $("#del_user").click(function () {
-    const id = $('#id').val();
+
+    const id = $('#exampleModalCenter').find('.hidden').val();
+    // const id = $('.hidden').val();
     console.log("click #del_user");
+    console.log(id);
 
     $.ajax({
 
@@ -184,6 +189,8 @@ $("#del_user").click(function () {
                         .addClass("success")
                         .attr("id", "success");
                     // .prop("id", "success");
+                    // setInterval('refreshPage()', 1000);
+                    setInterval('location.reload()', 1000);        // Using .reload() method.
                 });
                 $("#error").hide();
             } else {
@@ -197,47 +204,17 @@ $("#del_user").click(function () {
 });
 
 
-
-
-// $("#checkbox").click(function () {
-//     const fname = $("#first_name").val();
-//     const lname = $("#last_name").val();
-//     const status = $("#status").val();
-//     const role = $("#role").val();
-//     console.log("click #add_user");
-
+// $(document).ready(function () {
 //     $.ajax({
-
-//         url: "ajax/add_user.php",
-//         type: "POST",
-//         cache: false,
-//         data: {
-//             first_name: fname,
-//             last_name: lname,
-//             status: status,
-//             role: role,
-//         },
-//         dataType: "html",
-//         // beforeSend: function() {
-
-//         // },
-//         success: function (data) {
-//             if (data == "OK") {
-//                 $("#add_user").show(function () {
-//                     event.preventDefault();
-//                     $(this)
-//                         .text("Ok. User add")
-//                         .addClass("success")
-//                         .attr("id", "success");
-//                     // .prop("id", "success");
-//                 });
-//                 $("#error").hide();
-//             } else {
-//                 $("#error").show(function () {
-//                     $(this).text(data);
-//                     console.log("error");
-//                 });
-//             }
-//         },
+//         type: 'GET',
+//         url: '../../library/library.xml',
+//         dataType: 'xml',
+//         success: function (xml) {
+//             setInterval('refreshPage()', 5000);
+//         }
 //     });
 // });
+
+function refreshPage() {
+    location.reload(true);
+}

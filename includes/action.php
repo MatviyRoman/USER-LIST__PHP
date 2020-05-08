@@ -4,7 +4,7 @@
             <div class="main-box clearfix">
                 <div class="action">
                     <button type="button" class="btn btn-success add" data-toggle="modal"
-                        data-target="#exampleModalCenter" data-whatever="додавання користувача">Add
+                        data-target="#exampleModalCenter" data-whatever="Add a new user">Add
                     </button>
                     <select class="my-select">
                         <option selected>Please select</option>

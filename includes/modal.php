@@ -4,7 +4,6 @@ $sql = 'SELECT * FROM `users` WHERE `id` = :id';
 $query = $pdo->prepare($sql);
 $query->execute(['id' => $id]);
 $user = $query->fetch(PDO::FETCH_OBJ);
-var_dump($user);
 ?>
 
 <!-- Modal -->
@@ -19,6 +18,7 @@ var_dump($user);
                 </button>
             </div>
             <form method="post" class="post">
+            <input type="hidden" name="user_id" class="hidden" value="<?=$row->id?>">
                 <h1><?=$user->id?></h1>
                 <div class="modal-body">
                     <div class="form-group">
@@ -46,20 +46,23 @@ var_dump($user);
                         </select>
                     </div>
                     <div class="delete_text">
-                        Delete user
+                        You really want to delete this user?
                     </div>
                     <p class="error" id="error"></p>
                 </div>
                 <div class="modal-footer">
                     <div class="add_text">
-                        <!-- <input type="hidden" name="add_user" id="id" value="<?=$user->id?>"> -->
                         <button type="button" class="btn btn-success user" id="add_user">Save</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                    <div class="edit_text">
+                        <button type="button" class="btn btn-success user" id="edit_user">Save changes</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
                     <div class="delete_text">
-                        <input type="hidden" name="del_user" id="id" value="<?=$user->id?>">
-                        <button type="button" class="btn btn-success user" id="del_user">Save</button>
+                        <button type="button" class="btn btn-danger user" id="del_user">Yes</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
                     </div>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </form>
         </div>

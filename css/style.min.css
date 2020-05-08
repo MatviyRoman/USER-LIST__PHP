@@ -19,6 +19,10 @@ body {
   margin: 0 20px;
 }
 
+.user-list tbody td :first-child {
+  width: 20px;
+}
+
 .user-list tbody td > img {
   position: relative;
   max-width: 50px;
@@ -253,8 +257,8 @@ body {
 .modal .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 30px;
+  height: 15px;
 }
 
 .modal .switch input {
@@ -278,10 +282,10 @@ body {
 .modal .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
+  height: 11px;
+  width: 10px;
+  left: 2px;
+  bottom: 2px;
   background-color: white;
   -webkit-transition: .4s;
   transition: .4s;
@@ -292,8 +296,8 @@ body {
 }
 
 .modal input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  transform: translateX(26px);
+  -webkit-transform: translateX(16px);
+  transform: translateX(16px);
 }
 
 .modal input:focus + .slider {
@@ -307,5 +311,11 @@ body {
 
 .modal .slider.round:before {
   border-radius: 50%;
+}
+
+.modal .status_text {
+  position: relative;
+  top: 12px;
+  left: 10px;
 }
 /*# sourceMappingURL=style.min.css.map */
