@@ -20,7 +20,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/modal.php';
 <body>
     <form action="" method="post">
 
-        <?php require $_SERVER['DOCUMENT_ROOT'] . '/includes/action.php';?>
+        <?php
+require $_SERVER['DOCUMENT_ROOT'] . '/includes/action.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/includes/checked.php';
+?>
 
         <div class="container">
             <div class="row">
@@ -75,6 +78,7 @@ while ($row = $query->fetch(PDO::FETCH_OBJ)) {?>
                                             <?php }?>
                                         </td>
                                         <td style="width: 20%;">
+                                            <input type="hidden" name="user_id" class="hidden" value="<?=$row->id?>">
                                             <a href="?edit=<?=$row->id?>" class="table-link edit" data-toggle="modal"
                                                 data-target="#exampleModalCenter"
                                                 data-whatever="User editing id=<?=$row->id?>" data-id="<?=$row->id?>">
@@ -116,11 +120,12 @@ while ($row = $query->fetch(PDO::FETCH_OBJ)) {?>
                 </div>
             </div>
         </div>
-
-        <?php require $_SERVER['DOCUMENT_ROOT'] . '/includes/action.php';?>
+        <?php
+require $_SERVER['DOCUMENT_ROOT'] . '/includes/action.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/includes/checked.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/includes/error.php';
+?>
     </form>
-
-    <?php require $_SERVER['DOCUMENT_ROOT'] . '/includes/checked.php';?>
 
     <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">

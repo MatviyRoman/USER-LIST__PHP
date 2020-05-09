@@ -5,8 +5,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/config.php';
 $id = trim(filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT));
 $first_name = trim(filter_var($_POST['first_name'], FILTER_SANITIZE_STRING));
 $last_name = trim(filter_var($_POST['last_name'], FILTER_SANITIZE_STRING));
-$status = trim(filter_var($_POST['status'], FILTER_SANITIZE_STRING));
-$role = trim(filter_var($_POST['role'], FILTER_SANITIZE_STRING));
+$status = trim(filter_var($_POST['status'], FILTER_SANITIZE_NUMBER_INT));
+$role = trim(filter_var($_POST['role'], FILTER_SANITIZE_NUMBER_INT));
 
 $sql = 'SELECT * FROM `users` WHERE `id` = :id';
 $query = $pdo->prepare($sql);

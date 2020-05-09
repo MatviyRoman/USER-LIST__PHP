@@ -1,9 +1,11 @@
 <?php
-$id = trim(filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT));
+// $id = trim(filter_var($_GET['edit'], FILTER_SANITIZE_NUMBER_INT));
+// $id = 194;
 $sql = 'SELECT * FROM `users` WHERE `id` = :id';
 $query = $pdo->prepare($sql);
 $query->execute(['id' => $id]);
 $user = $query->fetch(PDO::FETCH_OBJ);
+var_dump($user->id);
 ?>
 
 <!-- Modal -->
@@ -18,22 +20,25 @@ $user = $query->fetch(PDO::FETCH_OBJ);
                 </button>
             </div>
             <form method="post" class="post">
-            <input type="hidden" name="user_id" class="hidden" value="<?=$row->id?>">
+                <input type="hidden" name="user_id" class="hidden" value="<?=$user->id?>">
                 <h1><?=$user->id?></h1>
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="first-name" class="col-form-label">First name:</label>
-                        <input type="text" class="form-control" name="first_name" id="first_name">
+                        <input type="text" class="form-control" name="first_name" id="first_name"
+                            value="<?=$user->first_name?>">
                     </div>
 
                     <div class="form-group">
                         <label for="last-name" class="col-form-label">Last name:</label>
-                        <input type="text" class="form-control" name="last_name" id="last_name">
+                        <input type="text" class="form-control" name="last_name" id="last_name"
+                            value="<?=$user->last_name?>">
                     </div>
                     <div class="form-group custom-control
                                 custom-switch">
                         <label for="status" class="switch">
-                            <input type="checkbox" name="status" id="status" value="0">
+                            <!-- <input type="checkbox" name="status" id="status" value="0"> -->
+                            <input type="checkbox" name="status" id="status" value="<?=$user->status?>">
                             <span class="slider round"></span>
                         </label>
                         <span class="status_text">status <span class="text">off</span></span>

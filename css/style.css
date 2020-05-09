@@ -15,8 +15,15 @@ body {
   margin: 20px 0;
 }
 
-.action .my-select {
+.action .all {
   margin: 0 20px;
+}
+
+.error {
+  display: none;
+  background: #f00;
+  padding: 20px;
+  color: #fff;
 }
 
 .user-list tbody td > img {

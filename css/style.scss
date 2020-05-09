@@ -8,9 +8,16 @@ body {
     align-items: stretch;
     margin: 20px 0;
 
-    .my-select {
+    .all {
         margin: 0 20px;
     }
+}
+
+.error {
+    display: none;
+    background: #f00;
+    padding: 20px;
+    color: #fff;
 }
 
 .user-list {

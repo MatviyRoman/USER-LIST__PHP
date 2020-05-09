@@ -15,12 +15,8 @@ body {
   margin: 20px 0;
 }
 
-.action .my-select {
+.action .all {
   margin: 0 20px;
-}
-
-.user-list tbody td :first-child {
-  width: 20px;
 }
 
 .user-list tbody td > img {
@@ -53,6 +49,7 @@ body {
 
 .table thead > tr > th:first-child {
   padding-left: 20px;
+  width: 20px;
 }
 
 .table thead > tr > th span {
@@ -101,6 +98,7 @@ body {
 
 .table tbody > tr > td:first-child {
   padding-left: 20px;
+  width: 20px;
 }
 
 .table tbody tr td {

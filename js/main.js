@@ -49,12 +49,50 @@ $('.add').click(function () {
 
 $('.edit').click(function () {
     console.log("click .edit");
+    const id = $('#exampleModalCenter').find('.hidden').val();
+    // console.log(id);
     $('.form-group, .edit_text').show();
     $('.add_text, .delete_text').hide();
     $('#edit_user').is(function () {
         $(this).text('Save changes');
         $(this).attr('class', 'btn btn-success');
     });
+
+    // $.ajax({
+    //     url: "ajax/get_user_info.php",
+    //     type: "POST",
+    //     cache: false,
+    //     data: {
+    //         id: id,
+    //         // first_name: fname,
+    //         // last_name: lname,
+    //         // status: status,
+    //         // role: role,
+    //     },
+    //     dataType: "html",
+    //     // beforeSend: function() {
+
+    //     // },
+    //     success: function (data) {
+    //         if (data == "UPDATE") {
+    //             $("#edit_user").show(function () {
+    //                 event.preventDefault();
+    //                 $(this)
+    //                     .text("Ok. User edit")
+    //                     .addClass("success")
+    //                     .attr("id", "success");
+    //                 // .prop("id", "success");
+    //                 setInterval('refreshPage()', 1000);
+    //             });
+    //             $("#error").hide();
+    //         } else {
+    //             $("#error").show(function () {
+    //                 $(this).text(data);
+    //                 console.log("error");
+    //             });
+    //         }
+    //     },
+    // });
 });
 
 
