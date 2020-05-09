@@ -121,13 +121,15 @@ $("#edit_user").click(function () {
     const lname = $('#last_name').val();
     const status = $('#status').val();
     const role = $("#role").val();
-    console.log("click #add_user");
+    const id = $('#exampleModalCenter').find('.hidden').val();
+    console.log("click #edit_user");
 
     $.ajax({
         url: "ajax/edit_user.php",
         type: "POST",
         cache: false,
         data: {
+            id: id,
             first_name: fname,
             last_name: lname,
             status: status,
@@ -138,11 +140,11 @@ $("#edit_user").click(function () {
 
         // },
         success: function (data) {
-            if (data == "OK") {
-                $("#add_user").show(function () {
+            if (data == "UPDATE") {
+                $("#edit_user").show(function () {
                     event.preventDefault();
                     $(this)
-                        .text("Ok. User add")
+                        .text("Ok. User edit")
                         .addClass("success")
                         .attr("id", "success");
                     // .prop("id", "success");
