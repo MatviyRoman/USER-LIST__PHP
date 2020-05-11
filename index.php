@@ -22,7 +22,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/modal.php';
 
         <?php
 require $_SERVER['DOCUMENT_ROOT'] . '/includes/action.php';
-require $_SERVER['DOCUMENT_ROOT'] . '/includes/checked.php';
 ?>
 
         <div class="container">
@@ -56,8 +55,8 @@ $query = $pdo->query($sql);
 while ($row = $query->fetch(PDO::FETCH_OBJ)) {?>
                                     <tr>
                                         <td>
-                                            <input type="checkbox" name="checkbox[]"
-                                                class="checkbox-<?=$row->id?> check" value="<?=$row->id?>">
+                                            <input type="checkbox" name="checkbox" class="checkbox-<?=$row->id?> check"
+                                                value="<?=$row->id?>">
                                         </td>
                                         <td>
                                             <a href="?id=<?=$row->id?>"
@@ -122,7 +121,6 @@ while ($row = $query->fetch(PDO::FETCH_OBJ)) {?>
         </div>
         <?php
 require $_SERVER['DOCUMENT_ROOT'] . '/includes/action.php';
-require $_SERVER['DOCUMENT_ROOT'] . '/includes/checked.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/includes/error.php';
 ?>
     </form>

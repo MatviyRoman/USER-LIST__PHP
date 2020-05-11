@@ -1,11 +1,13 @@
 <?php
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/config.php';
+
 $all = trim(filter_var($_POST['all'], FILTER_SANITIZE_NUMBER_INT));
 
 $error = [];
 $results = [];
 
-if (isset($_POST['btn_ok'])) {
+if (isset($_POST['checkbox'])) {
     if (!$all) {
         $error[] = 'Please select action';
     } else {
@@ -44,13 +46,11 @@ if (isset($_POST['btn_ok'])) {
     }
 }
 
-// if ($error != []) {
-//     foreach ($error as $err) {
-//         echo $err, PHP_EOL;
-//     }
-//     // exit();
-// } else {
-//     foreach ($results as $result) {
-//         echo $result, PHP_EOL;
-//     }
-// }
+if ($error != []) {
+    foreach ($error as $err) {
+        echo $err, PHP_EOL;
+    }
+    exit();
+}
+
+echo 'DELETES';

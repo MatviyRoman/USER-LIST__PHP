@@ -8,6 +8,113 @@ $('#exampleModalCenter').on('show.bs.modal', function (event) {
 
 
 
+$('select.all').change(function () {
+    $('option').find('selected', function () {
+        if ($(this).is(':selected')) {
+            let get = $(this).val();
+            console.log(get);
+            if ($(this).val() == 1) {
+                console.log('select 1');
+                $(this).attr("selected", "selected");
+                $('.btn_ok').is(function () {
+                    $(this).attr('data-whatever', 'You are going to set the status to active for the selected users');
+                });
+            } else if ($(this).val() == 2) {
+                console.log('select 2');
+                $(this).attr("selected", "selected");
+                $('.btn_ok').is(function () {
+                    $(this).attr('data-whatever', 'You are going to set the status to not active for the selected users');
+                });
+            } else if ($(this).val() == 3) {
+                console.log('select 3');
+                $(this).attr("selected", "selected");
+                $('.btn_ok').is(function () {
+                    $(this).attr('data-whatever', 'You are about to delete selected users');
+                });
+            } else if (!$(this).val()) {
+                console.log('select default');
+                $(this).attr("selected", "selected");
+                $('.btn_ok').is(function () {
+                    $(this).attr('disabled', true);
+                });
+            }
+        }
+    });
+});
+
+$('.btn_ok').is(function () {
+    $(this).attr('disabled', true);
+});
+
+
+
+$('.set_not_active, .set_active, .set_delete').hide();
+
+
+
+$('select.all').change(function () {
+    $(this).on(function () {
+        $(this).prop('selected', true);
+    })
+
+    let selected = $(this).children('option:selected').val();
+    // console.log('selected ' + selected);
+
+    if (1 == $(this).val()) {
+        console.log('select 1');
+        $(this).attr("selected", "selected");
+        $('.set_active').show();
+        $('.set_delete, .set_not_active, .set_default').hide();
+        $('.btn_ok').is(function () {
+            $(this).attr('data-whatever', 'You are going to set the status to active for the selected users');
+            $(this).attr('disabled', false);
+            $(this).attr('id', 'set_active');
+        });
+    } else if (2 == $(this).val()) {
+        console.log('select 2');
+        $(this).attr("selected", "selected");
+        $('.set_not_active').show();
+        $('.set_delete, .set_active, .set_default').hide();
+        $('.btn_ok').is(function () {
+            $(this).attr('data-whatever', 'You are going to set the status to not active for the selected users');
+            $(this).attr('disabled', false);
+            $(this).attr('id', 'set_not_active');
+        });
+    } else if (3 == $(this).val()) {
+        console.log('select 3');
+        $(this).attr("selected", "selected");
+        $('.set_delete').show();
+        $('.set_not_active, .set_active, .set_default').hide();
+        $('.btn_ok').is(function () {
+            $(this).attr('data-whatever', 'You are about to delete selected users');
+            $(this).attr('disabled', false);
+            $(this).attr('id', 'set_delete');
+        });
+    } else if (0 == $(this).val()) {
+        console.log('select default');
+        $(this).attr("selected", "selected");
+        $('.set_default').show();
+        $('.set_not_active, .set_active, .set_delete').hide();
+        $('.btn_ok').is(function () {
+            $(this).attr('disabled', true);
+            $(this).attr('id', 'set_default');
+        });
+    }
+});
+
+
+
+$('.checkbox_btn').click(function () {
+    let check = [];
+    $.each($('.check:checked'), function () {
+        check.push($(this).val());
+    });
+    console.log(check.join("##"));
+    let checked = check.join("##");
+});
+
+
+
 $('#checkbox_all').click(function () {
     $('.check').not(this).prop('checked', this.checked);
 });
@@ -38,7 +145,7 @@ $('#status').click(function () {
 $('.add').click(function () {
     console.log("click .add");
     $('.form-group, .add_text').show();
-    $('.edit_text, .delete_text').hide();
+    $('.edit_text, .delete_text, .set_delete').hide();
     $('#add_user').is(function () {
         $(this).text('Save');
         $(this).attr('class', 'btn btn-success');
@@ -50,9 +157,8 @@ $('.add').click(function () {
 $('.edit').click(function () {
     console.log("click .edit");
     const id = $('#exampleModalCenter').find('.hidden').val();
-    // console.log(id);
     $('.form-group, .edit_text').show();
-    $('.add_text, .delete_text').hide();
+    $('.add_text, .delete_text, .set_delete').hide();
     $('#edit_user').is(function () {
         $(this).text('Save changes');
         $(this).attr('class', 'btn btn-success');
@@ -99,11 +205,23 @@ $('.edit').click(function () {
 
 $('.del').click(function () {
     console.log("click .del");
-    $('.form-group, .add_text, .edit_text').hide();
+    $('.form-group, .add_text, .edit_text, .set_delete').hide();
     $('.delete_text').show();
     $('#del_user').is(function () {
         $(this).text('Delete');
         $(this).attr('class', 'btn btn-danger');
+    });
+});
+
+
+
+$('.checkbox_btn').click(function () {
+    console.log("click .checkbox_btn");
+    $('.form-group, .add_text, .edit_text, .delete_text').hide();
+    $('.all_delete_text').show();
+    $('#add_user').is(function () {
+        $(this).text('Yes');
+        $(this).attr('class', 'btn btn-success');
     });
 });
 
@@ -201,6 +319,52 @@ $("#edit_user").click(function () {
 
 
 
+$("#all_del_user").click(function () {
+
+
+    let check = [];
+    $.each($('.check:checked'), function () {
+        check.push($(this).val());
+    });
+    let checked = check.join("##");
+    console.log(checked);
+    console.log("click #all_del_user");
+
+    $.ajax({
+        url: "ajax/checked_user.php",
+        type: "POST",
+        cache: false,
+        data: {
+            checkbox: checked,
+        },
+        dataType: "html",
+        // beforeSend: function() {
+
+        // },
+        success: function (data) {
+            if (data == "DELETES") {
+                $("#edit_user").show(function () {
+                    event.preventDefault();
+                    $(this)
+                        .text("Ok. User edit")
+                        .addClass("success")
+                        .attr("id", "success");
+                    // .prop("id", "success");
+                    setInterval('refreshPage()', 1000);
+                });
+                $("#error").hide();
+            } else {
+                $("#error").show(function () {
+                    $(this).text(data);
+                    console.log("error");
+                });
+            }
+        },
+    });
+});
+
+
+
 $("#del_user").click(function () {
 
     const id = $('#exampleModalCenter').find('.hidden').val();
@@ -242,18 +406,6 @@ $("#del_user").click(function () {
         },
     });
 });
-
-
-// $(document).ready(function () {
-//     $.ajax({
-//         type: 'GET',
-//         url: '../../library/library.xml',
-//         dataType: 'xml',
-//         success: function (xml) {
-//             setInterval('refreshPage()', 5000);
-//         }
-//     });
-// });
 
 function refreshPage() {
     location.reload(true);

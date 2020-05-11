@@ -6,16 +6,16 @@
 
                     <?php
 
-// if ($error != []) {
-//     foreach ($error as $err) {
-//         echo $err, PHP_EOL;
-//     }
-//     // exit();
-// } else {
-//     foreach ($results as $result) {
-//         echo $result, PHP_EOL;
-//     }
-// }
+if ($error != []) {
+    foreach ($error as $err) {
+        echo $err, PHP_EOL;
+    }
+    // exit();
+} else {
+    foreach ($results as $result) {
+        echo $result, PHP_EOL;
+    }
+}
 
 ?>
                 </div>
