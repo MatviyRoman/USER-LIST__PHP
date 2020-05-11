@@ -42,12 +42,15 @@ $('select.all').change(function () {
     });
 });
 
+
+
 $('.btn_ok').is(function () {
     $(this).attr('disabled', true);
 });
 
 
 
+$('.set_default').show();
 $('.set_not_active, .set_active, .set_delete').hide();
 
 
@@ -64,7 +67,7 @@ $('select.all').change(function () {
         console.log('select 1');
         $(this).attr("selected", "selected");
         $('.set_active').show();
-        $('.set_delete, .set_not_active, .set_default').hide();
+        $('.set_delete, .set_not_active, .set_default, .error').hide();
         $('.btn_ok').is(function () {
             $(this).attr('data-whatever', 'You are going to set the status to active for the selected users');
             $(this).attr('disabled', false);
@@ -74,7 +77,7 @@ $('select.all').change(function () {
         console.log('select 2');
         $(this).attr("selected", "selected");
         $('.set_not_active').show();
-        $('.set_delete, .set_active, .set_default').hide();
+        $('.set_delete, .set_active, .set_default, .error').hide();
         $('.btn_ok').is(function () {
             $(this).attr('data-whatever', 'You are going to set the status to not active for the selected users');
             $(this).attr('disabled', false);
@@ -84,7 +87,7 @@ $('select.all').change(function () {
         console.log('select 3');
         $(this).attr("selected", "selected");
         $('.set_delete').show();
-        $('.set_not_active, .set_active, .set_default').hide();
+        $('.set_not_active, .set_active, .set_default, .error').hide();
         $('.btn_ok').is(function () {
             $(this).attr('data-whatever', 'You are about to delete selected users');
             $(this).attr('disabled', false);
@@ -94,7 +97,7 @@ $('select.all').change(function () {
         console.log('select default');
         $(this).attr("selected", "selected");
         $('.set_default').show();
-        $('.set_not_active, .set_active, .set_delete').hide();
+        $('.set_not_active, .set_active, .set_delete, .error').hide();
         $('.btn_ok').is(function () {
             $(this).attr('disabled', true);
             $(this).attr('id', 'set_default');
@@ -145,7 +148,7 @@ $('#status').click(function () {
 $('.add').click(function () {
     console.log("click .add");
     $('.form-group, .add_text').show();
-    $('.edit_text, .delete_text, .set_delete').hide();
+    $('.edit_text, .delete_text, .error, .set_delete, .set_active, .set_not_active').hide();
     $('#add_user').is(function () {
         $(this).text('Save');
         $(this).attr('class', 'btn btn-success');
@@ -158,7 +161,7 @@ $('.edit').click(function () {
     console.log("click .edit");
     const id = $('#exampleModalCenter').find('.hidden').val();
     $('.form-group, .edit_text').show();
-    $('.add_text, .delete_text, .set_delete').hide();
+    $('.add_text, .delete_text, .error, .set_delete, .set_active, .set_not_active').hide();
     $('#edit_user').is(function () {
         $(this).text('Save changes');
         $(this).attr('class', 'btn btn-success');
@@ -205,7 +208,7 @@ $('.edit').click(function () {
 
 $('.del').click(function () {
     console.log("click .del");
-    $('.form-group, .add_text, .edit_text, .set_delete').hide();
+    $('.form-group, .add_text, .edit_text, .error, .set_delete, .set_active, .set_not_active').hide();
     $('.delete_text').show();
     $('#del_user').is(function () {
         $(this).text('Delete');
@@ -319,8 +322,7 @@ $("#edit_user").click(function () {
 
 
 
-$("#all_del_user").click(function () {
-
+$("#set_active").click(function () {
 
     let check = [];
     $.each($('.check:checked'), function () {
@@ -328,10 +330,101 @@ $("#all_del_user").click(function () {
     });
     let checked = check.join("##");
     console.log(checked);
-    console.log("click #all_del_user");
+    console.log("click #set_active");
 
     $.ajax({
-        url: "ajax/checked_user.php",
+        url: "ajax/set_active.php",
+        type: "POST",
+        cache: false,
+        data: {
+            checkbox: checked,
+        },
+        dataType: "html",
+        // beforeSend: function() {
+
+        // },
+        success: function (data) {
+            if (data == "ACTIVE") {
+                $("#edit_user").show(function () {
+                    event.preventDefault();
+                    $(this)
+                        .text("Ok. User edit")
+                        .addClass("success")
+                        .attr("id", "success");
+                    // .prop("id", "success");
+                    setInterval('refreshPage()', 1000);
+                });
+                $("#error").hide();
+            } else {
+                $("#error").show(function () {
+                    $(this).text(data);
+                    console.log("error");
+                });
+            }
+        },
+    });
+});
+
+
+
+$("#set_not_active").click(function () {
+
+    let check = [];
+    $.each($('.check:checked'), function () {
+        check.push($(this).val());
+    });
+    let checked = check.join("##");
+    console.log(checked);
+    console.log("click #set_not_active");
+
+    $.ajax({
+        url: "ajax/set_not_active.php",
+        type: "POST",
+        cache: false,
+        data: {
+            checkbox: checked,
+        },
+        dataType: "html",
+        // beforeSend: function() {
+
+        // },
+        success: function (data) {
+            if (data == "NOTACTIVE") {
+                $("#edit_user").show(function () {
+                    event.preventDefault();
+                    $(this)
+                        .text("Ok. User edit")
+                        .addClass("success")
+                        .attr("id", "success");
+                    // .prop("id", "success");
+                    setInterval('refreshPage()', 1000);
+                });
+                $("#error").hide();
+            } else {
+                $("#error").show(function () {
+                    $(this).text(data);
+                    console.log("error");
+                });
+            }
+        },
+    });
+});
+
+
+
+
+$("#set_delete").click(function () {
+
+    let check = [];
+    $.each($('.check:checked'), function () {
+        check.push($(this).val());
+    });
+    let checked = check.join("##");
+    console.log(checked);
+    console.log("click #set_delete");
+
+    $.ajax({
+        url: "ajax/set_delete.php",
         type: "POST",
         cache: false,
         data: {

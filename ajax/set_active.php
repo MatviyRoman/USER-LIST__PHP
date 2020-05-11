@@ -2,19 +2,16 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/config.php';
 
-$all = trim(filter_var($_POST['all'], FILTER_SANITIZE_NUMBER_INT));
+$checkbox = trim(filter_var($_POST['checkbox'], FILTER_SANITIZE_STRING));
 
 $error = [];
-$results = [];
 
-if (isset($_POST['checkbox'])) {
-    $checkbox_add = $_POST["checkbox"];
+if ($checkbox == null) {
+    $error[] = 'Please select at least one checkbox';
+} else if (isset($checkbox)) {
+    $checkbox_add = explode("##", $checkbox);
     $checkbox_addthis = '';
     if (is_array($checkbox_add)) {
-        $count = 0;
-        $count = count($checkbox_add);
-        $checkbox_add = $_POST["checkbox"];
-        $checkbox_addthis = '';
         $count = count($checkbox_add);
         for ($i = 0; $i < $count; $i++) {
 
@@ -27,8 +24,7 @@ if (isset($_POST['checkbox'])) {
             $user = $query->fetch(PDO::FETCH_OBJ);
             $checkbox_addthis .= $checkbox_add[$i] . '##';
         }
-    } else {
-        $error[] = 'Please select at least one checkbox';
+
     }
 }
 
