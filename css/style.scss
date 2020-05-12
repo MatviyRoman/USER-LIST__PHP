@@ -36,15 +36,23 @@ body {
                 font-size: 1.25em;
                 padding-top: 3px;
                 margin-left: 60px;
-            }
+                color: inherit;
 
-            .user-subhead {
-                font-size: 0.875em;
-                font-style: italic;
+                &:hover {
+                    text-decoration: none;
+                    color: inherit;
+                    cursor: default;
+                }
             }
+        }
+
+        .user-subhead {
+            font-size: 0.875em;
+            font-style: italic;
         }
     }
 }
+
 
 .table {
     border-collapse: separate;

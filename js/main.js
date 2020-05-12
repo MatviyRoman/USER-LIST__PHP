@@ -224,7 +224,7 @@ $("#add_user").click(function () {
                         .addClass("success")
                         .attr("id", "success");
                     // .prop("id", "success");
-                    setInterval('refreshPage()', 1500);
+                    setInterval('refreshPage()', 1000);
                 });
                 $("#error").hide();
             } else {
@@ -271,7 +271,7 @@ $("#edit_user").click(function () {
                         .addClass("success")
                         .attr("id", "success");
                     // .prop("id", "success");
-                    setInterval('refreshPage()', 1500);
+                    setInterval('refreshPage()', 1000);
                 });
                 $("#error").hide();
             } else {
@@ -316,7 +316,7 @@ $("#set_active").click(function () {
                         .addClass("success")
                         .attr("id", "success");
                     // .prop("id", "success");
-                    setInterval('refreshPage()', 1500);
+                    setInterval('refreshPage()', 1000);
                 });
                 $("#error").hide();
             } else {
@@ -361,7 +361,7 @@ $("#set_not_active").click(function () {
                         .addClass("success")
                         .attr("id", "success");
                     // .prop("id", "success");
-                    setInterval('refreshPage()', 1500);
+                    setInterval('refreshPage()', 1000);
                 });
                 $("#error").hide();
             } else {
@@ -407,7 +407,7 @@ $("#set_delete").click(function () {
                         .addClass("success")
                         .attr("id", "success");
                     // .prop("id", "success");
-                    setInterval('refreshPage()', 1500);
+                    setInterval('refreshPage()', 1000);
                 });
                 $("#error").hide();
             } else {
@@ -451,7 +451,7 @@ $("#del_user").click(function () {
                         .attr("id", "success");
                     // .prop("id", "success");
                     // setInterval('refreshPage()', 1000);
-                    setInterval('location.reload()', 1500);        // Using .reload() method.
+                    setInterval('location.reload()', 1000);        // Using .reload() method.
                 });
                 $("#error").hide();
             } else {
