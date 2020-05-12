@@ -36,8 +36,7 @@
                     <div class="form-group custom-control
                                 custom-switch">
                         <label for="status" class="switch">
-                            <!-- <input type="checkbox" name="status" id="status" value="0"> -->
-                            <input type="checkbox" name="status" id="status" value="<?=$user->status?>">
+                            <input type="checkbox" name="status" id="status" value="0">
                             <span class="slider round"></span>
                         </label>
                         <span class="status_text">status <span class="text">off</span></span>
