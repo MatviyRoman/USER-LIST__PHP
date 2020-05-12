@@ -121,7 +121,6 @@ while ($row = $query->fetch(PDO::FETCH_OBJ)) {?>
         </div>
         <?php
 require $_SERVER['DOCUMENT_ROOT'] . '/includes/action.php';
-require $_SERVER['DOCUMENT_ROOT'] . '/includes/error.php';
 ?>
     </form>
 

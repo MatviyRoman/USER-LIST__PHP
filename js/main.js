@@ -166,42 +166,6 @@ $('.edit').click(function () {
         $(this).text('Save changes');
         $(this).attr('class', 'btn btn-success');
     });
-
-    // $.ajax({
-    //     url: "ajax/get_user_info.php",
-    //     type: "POST",
-    //     cache: false,
-    //     data: {
-    //         id: id,
-    //         // first_name: fname,
-    //         // last_name: lname,
-    //         // status: status,
-    //         // role: role,
-    //     },
-    //     dataType: "html",
-    //     // beforeSend: function() {
-
-    //     // },
-    //     success: function (data) {
-    //         if (data == "UPDATE") {
-    //             $("#edit_user").show(function () {
-    //                 event.preventDefault();
-    //                 $(this)
-    //                     .text("Ok. User edit")
-    //                     .addClass("success")
-    //                     .attr("id", "success");
-    //                 // .prop("id", "success");
-    //                 setInterval('refreshPage()', 1000);
-    //             });
-    //             $("#error").hide();
-    //         } else {
-    //             $("#error").show(function () {
-    //                 $(this).text(data);
-    //                 console.log("error");
-    //             });
-    //         }
-    //     },
-    // });
 });
 
 
@@ -260,7 +224,7 @@ $("#add_user").click(function () {
                         .addClass("success")
                         .attr("id", "success");
                     // .prop("id", "success");
-                    setInterval('refreshPage()', 1000);
+                    setInterval('refreshPage()', 1500);
                 });
                 $("#error").hide();
             } else {
@@ -307,7 +271,7 @@ $("#edit_user").click(function () {
                         .addClass("success")
                         .attr("id", "success");
                     // .prop("id", "success");
-                    setInterval('refreshPage()', 1000);
+                    setInterval('refreshPage()', 1500);
                 });
                 $("#error").hide();
             } else {
@@ -352,7 +316,7 @@ $("#set_active").click(function () {
                         .addClass("success")
                         .attr("id", "success");
                     // .prop("id", "success");
-                    setInterval('refreshPage()', 1000);
+                    setInterval('refreshPage()', 1500);
                 });
                 $("#error").hide();
             } else {
@@ -397,7 +361,7 @@ $("#set_not_active").click(function () {
                         .addClass("success")
                         .attr("id", "success");
                     // .prop("id", "success");
-                    setInterval('refreshPage()', 1000);
+                    setInterval('refreshPage()', 1500);
                 });
                 $("#error").hide();
             } else {
@@ -443,7 +407,7 @@ $("#set_delete").click(function () {
                         .addClass("success")
                         .attr("id", "success");
                     // .prop("id", "success");
-                    setInterval('refreshPage()', 1000);
+                    setInterval('refreshPage()', 1500);
                 });
                 $("#error").hide();
             } else {
@@ -487,7 +451,7 @@ $("#del_user").click(function () {
                         .attr("id", "success");
                     // .prop("id", "success");
                     // setInterval('refreshPage()', 1000);
-                    setInterval('location.reload()', 1000);        // Using .reload() method.
+                    setInterval('location.reload()', 1500);        // Using .reload() method.
                 });
                 $("#error").hide();
             } else {

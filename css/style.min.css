@@ -19,6 +19,11 @@ body {
   margin: 0 20px;
 }
 
+.error {
+  padding: 20px;
+  color: #f00;
+}
+
 .user-list tbody td > img {
   position: relative;
   max-width: 50px;

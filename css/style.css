@@ -21,9 +21,10 @@ body {
 
 .error {
   display: none;
-  background: #f00;
   padding: 20px;
-  color: #fff;
+  margin: 20px 0;
+  border: 1px solid #f00;
+  color: #f00;
 }
 
 .user-list tbody td > img {
