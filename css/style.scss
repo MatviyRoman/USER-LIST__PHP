@@ -60,12 +60,28 @@ body {
     thead {
         >tr {
             >th {
-                border-bottom: 1px solid #C2C2C2;
+                border-bottom: none;
                 padding-bottom: 0;
 
                 &:first-child {
                     padding-left: 20px;
                     width: 20px;
+
+                    span {
+                        padding: 0 5px 5px 0;
+
+                        .custom-control {
+                            display: flex;
+                            padding: 0;
+                            text-transform: uppercase;
+                            position: relative;
+                            top: 10px;
+
+                            label {
+                                margin-left: 10px;
+                            }
+                        }
+                    }
                 }
 
                 span {

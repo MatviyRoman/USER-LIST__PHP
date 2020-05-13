@@ -7,11 +7,11 @@ body {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
   margin: 20px 0;
 }
 
@@ -27,7 +27,7 @@ body {
   color: #f00;
 }
 
-.user-list tbody td > img {
+.user-list tbody td>img {
   position: relative;
   max-width: 50px;
   float: left;
@@ -57,17 +57,35 @@ body {
   border-collapse: separate;
 }
 
-.table thead > tr > th {
-  border-bottom: 1px solid #C2C2C2;
+.table thead>tr>th {
+  border-bottom: none;
   padding-bottom: 0;
 }
 
-.table thead > tr > th:first-child {
+.table thead>tr>th:first-child {
   padding-left: 20px;
   width: 20px;
 }
 
-.table thead > tr > th span {
+.table thead>tr>th:first-child span {
+  padding: 0 5px 5px 0;
+}
+
+.table thead>tr>th:first-child span .custom-control {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0;
+  text-transform: uppercase;
+  position: relative;
+  top: 10px;
+}
+
+.table thead>tr>th:first-child span .custom-control label {
+  margin-left: 10px;
+}
+
+.table thead>tr>th span {
   border-bottom: 2px solid #C2C2C2;
   display: inline-block;
   padding: 0 5px;
@@ -75,11 +93,11 @@ body {
   font-weight: normal;
 }
 
-.table thead > tr > th > a span {
+.table thead>tr>th>a span {
   color: #344644;
 }
 
-.table thead > tr > th > a span:after {
+.table thead>tr>th>a span:after {
   content: "\f0dc";
   font-family: FontAwesome;
   font-style: normal;
@@ -89,21 +107,21 @@ body {
   font-size: 0.75em;
 }
 
-.table thead > tr > th > a:hover span {
+.table thead>tr>th>a:hover span {
   text-decoration: none;
   color: #2bb6a3;
   border-color: #2bb6a3;
 }
 
-.table thead > tr > th > a.asc span:after {
+.table thead>tr>th>a.asc span:after {
   content: "\f0dd";
 }
 
-.table thead > tr > th > a.desc span:after {
+.table thead>tr>th>a.desc span:after {
   content: "\f0de";
 }
 
-.table tbody > tr > td {
+.table tbody>tr>td {
   font-size: 0.875em;
   background: #f5f5f5;
   border-top: 10px solid #fff;
@@ -111,7 +129,7 @@ body {
   padding: 12px 8px;
 }
 
-.table tbody > tr > td:first-child {
+.table tbody>tr>td:first-child {
   padding-left: 20px;
   width: 20px;
 }
@@ -153,24 +171,24 @@ body {
   border-radius: 50%;
   border: 1px solid #000;
   -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .table tbody tr td .status.active {
   background: #0f0;
 }
 
-.table tbody > tr.table-line-fb > td {
+.table tbody>tr.table-line-fb>td {
   background-color: #9daccb;
   color: #262525;
 }
 
-.table tbody > tr.table-line-twitter > td {
+.table tbody>tr.table-line-twitter>td {
   background-color: #9fccff;
   color: #262525;
 }
 
-.table tbody > tr.table-line-plus > td {
+.table tbody>tr.table-line-plus>td {
   background-color: #eea59c;
   color: #262525;
 }
@@ -193,20 +211,20 @@ body {
   color: #dd504c;
 }
 
-.table-hover > tbody > tr:hover > td {
+.table-hover>tbody>tr:hover>td {
   background-color: #eee;
 }
 
-.table-hover > tbody > tr:hover > th {
+.table-hover>tbody>tr:hover>th {
   background-color: #eee;
 }
 
-.table.table-hover tbody > tr > td {
+.table.table-hover tbody>tr>td {
   -webkit-transition: background-color 0.15s ease-in-out 0s;
   transition: background-color 0.15s ease-in-out 0s;
 }
 
-.table-products tbody > tr > td {
+.table-products tbody>tr>td {
   background: none;
   border: none;
   border-bottom: 1px solid #ebebeb;
@@ -215,7 +233,7 @@ body {
   position: relative;
 }
 
-.table-products tbody > tr:hover > td {
+.table-products tbody>tr:hover>td {
   text-decoration: none;
   background-color: #f6f6f6;
 }
@@ -234,7 +252,7 @@ body {
   font-size: 0.875em;
 }
 
-.table-products .price > i {
+.table-products .price>i {
   color: #8dc859;
 }
 
@@ -246,7 +264,7 @@ body {
   font-size: 0.875em;
 }
 
-.table-products .warranty > i {
+.table-products .warranty>i {
   color: #f1c40f;
 }
 
@@ -304,18 +322,18 @@ body {
   transition: .4s;
 }
 
-.modal input:checked + .slider {
+.modal input:checked+.slider {
   background-color: #2196F3;
 }
 
-.modal input:checked + .slider:before {
+.modal input:checked+.slider:before {
   -webkit-transform: translateX(16px);
   transform: translateX(16px);
 }
 
-.modal input:focus + .slider {
+.modal input:focus+.slider {
   -webkit-box-shadow: 0 0 1px #2196F3;
-          box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #2196F3;
 }
 
 .modal .slider.round {
@@ -331,4 +349,5 @@ body {
   top: 12px;
   left: 10px;
 }
+
 /*# sourceMappingURL=style.css.map */

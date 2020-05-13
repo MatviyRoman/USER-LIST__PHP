@@ -37,7 +37,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/action.php';
                                                     custom-checkbox">
                                                     <input type="checkbox" name="checkbox_all[]" id="checkbox_all"
                                                         value="<?=$row->id?>">
-                                                    <!-- <label for="checkbox_all">select all</label> -->
+                                                    <label for="checkbox_all">all</label>
                                                 </div>
                                             </span>
                                         </th>
