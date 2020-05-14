@@ -3,7 +3,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/modal.php';
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,12 +17,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/modal.php';
 </head>
 
 <body>
-    <form action="" method="post">
-
+    <form method="post">
         <?php
 require $_SERVER['DOCUMENT_ROOT'] . '/includes/action.php';
 ?>
-
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -32,7 +29,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/action.php';
                             <table class="table user-list">
                                 <thead>
                                     <tr>
-                                        <th><span>
+                                        <th>
+                                            <span>
                                                 <div class="custom-control
                                                     custom-checkbox">
                                                     <input type="checkbox" name="checkbox_all[]" id="checkbox_all"
@@ -51,23 +49,20 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/action.php';
                                     <?php
 $sql = 'SELECT * FROM `users` ORDER BY `id` DESC LIMIT 10';
 $query = $pdo->query($sql);
-
 while ($row = $query->fetch(PDO::FETCH_OBJ)) {?>
                                     <tr>
                                         <td>
-                                            <input type="checkbox" name="checkbox" class="checkbox-<?=$row->id?> check"
-                                                value="<?=$row->id?>">
+                                            <input type="checkbox" name="checkbox" class="check" value="<?=$row->id?>">
                                         </td>
                                         <td>
-                                            <a href="?id=<?=$row->id?>"
-                                                class="user-link"><?=$row->first_name, ' ', $row->last_name?></a>
+                                            <a href="?id=<?=$row->id?>" class="user-link">
+                                                <?=$row->first_name, ' ', $row->last_name?>
+                                            </a>
                                         </td>
                                         <td>
-                                            <?php if ($row->status) {?>
-                                            <div class="status active"></div>
-                                            <?php } else {?>
-                                            <div class="status"></div>
-                                            <?php }?>
+                                            <div class="status
+                                                <?php if ($row->status) {print 'active';}?>">
+                                            </div>
                                         </td>
                                         <td class="text-center">
                                             <?php if ($row->role == 1) {?>
@@ -77,10 +72,10 @@ while ($row = $query->fetch(PDO::FETCH_OBJ)) {?>
                                             <?php }?>
                                         </td>
                                         <td style="width: 20%;">
-                                            <input type="hidden" name="user_id" class="hidden" value="<?=$row->id?>">
                                             <a href="?edit=<?=$row->id?>" class="table-link edit" data-toggle="modal"
-                                                data-target="#exampleModalCenter"
-                                                data-whatever="User editing id=<?=$row->id?>" data-id="<?=$row->id?>">
+                                                data-target="#exampleModalCenter" data-whatever="User editing"
+                                                data-id="<?=$row->id?>">
+                                                <input type="hidden" name="id" class="hidden" value="<?=$row->id?>">
                                                 <span class="fa-stack">
                                                     <i class="fa fa-square
                                                     fa-stack-2x"></i>
@@ -90,7 +85,8 @@ while ($row = $query->fetch(PDO::FETCH_OBJ)) {?>
                                             </a>
                                             <a href="?del=<?=$row->id?>" class="table-link
                                             danger del" data-toggle="modal" data-target="#exampleModalCenter"
-                                                data-whatever="Deleting user id=<?=$row->id?>" data-id="<?=$row->id?>">
+                                                data-whatever="Deleting user" data-id="<?=$row->id?>">
+                                                <input type="hidden" name="id" class="hidden" value="<?=$row->id?>">
                                                 <span class="fa-stack">
                                                     <i class="fa fa-square
                                                     fa-stack-2x"></i>
@@ -100,9 +96,7 @@ while ($row = $query->fetch(PDO::FETCH_OBJ)) {?>
                                             </a>
                                         </td>
                                     </tr>
-                                    <?php
-}
-?>
+                                    <?php }?>
                                 </tbody>
                             </table>
                         </div>
@@ -114,7 +108,6 @@ while ($row = $query->fetch(PDO::FETCH_OBJ)) {?>
 require $_SERVER['DOCUMENT_ROOT'] . '/includes/action.php';
 ?>
     </form>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
@@ -122,7 +115,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/action.php';
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
-    <script src="./js/main.min.js" deffer></script>
+    <script src="./js/main.js" deffer></script>
 </body>
 
 </html>

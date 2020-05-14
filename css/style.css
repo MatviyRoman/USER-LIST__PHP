@@ -19,6 +19,14 @@ body {
   margin: 0 20px;
 }
 
+.action .block_btn {
+  position: relative;
+}
+
+.action .block_btn .btn_ok {
+  position: absolute;
+}
+
 .error {
   display: none;
   padding: 20px;

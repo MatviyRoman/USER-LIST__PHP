@@ -11,6 +11,14 @@ body {
     .all {
         margin: 0 20px;
     }
+
+    .block_btn {
+        position: relative;
+
+        .btn_ok {
+            position: absolute;
+        }
+    }
 }
 
 .error {
