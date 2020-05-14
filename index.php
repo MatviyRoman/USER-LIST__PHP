@@ -65,11 +65,14 @@ while ($row = $query->fetch(PDO::FETCH_OBJ)) {?>
                                             </div>
                                         </td>
                                         <td class="text-center">
-                                            <?php if ($row->role == 1) {?>
-                                            <span class="user-subhead">Admin</span>
-                                            <?php } else {?>
-                                            <span class="user-subhead">User</span>
-                                            <?php }?>
+                                            <span class="user-subhead">
+                                                <?php
+if ($row->role == 1) {
+    print 'Admin';
+} else {
+    print 'User';
+}?>
+                                            </span>
                                         </td>
                                         <td style="width: 20%;">
                                             <a href="?edit=<?=$row->id?>" class="table-link edit" data-toggle="modal"
@@ -115,7 +118,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/action.php';
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
-    <script src="./js/main.js" deffer></script>
+    <script src="./js/main.min.js" deffer></script>
 </body>
 
 </html>
