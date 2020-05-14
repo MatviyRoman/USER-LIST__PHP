@@ -13,15 +13,15 @@
                         <option value="3">Delete</option>
                     </select>
                     <div class="block_btn">
-                        <button type="button" name="btn_ok" class="btn_ok btn btn-success checkbox_btn set_default"
+                        <button type="button" name="btn_ok" class="btn_ok btn btn-success checkbox_btn default"
                             data-toggle="modal" data-target="#exampleModalCenter" data-whatever="Error">Ok</button>
-                        <button type="button" name="btn_ok" class="btn_ok btn btn-success checkbox_btn set_active"
+                        <button type="button" name="btn_ok" class="btn_ok btn btn-success checkbox_btn all_active"
                             data-toggle="modal" data-target="#exampleModalCenter"
                             data-whatever="You are going to set the status to active for the selected users">Ok</button>
-                        <button type="button" name="btn_ok" class="btn_ok btn btn-success checkbox_btn set_not_active"
+                        <button type="button" name="btn_ok" class="btn_ok btn btn-success checkbox_btn all_not_active"
                             data-toggle="modal" data-target="#exampleModalCenter"
                             data-whatever="You are going to set the status to not active for the selected users">Ok</button>
-                        <button type="button" name="btn_ok" class="btn_ok btn btn-success checkbox_btn set_delete"
+                        <button type="button" name="btn_ok" class="btn_ok btn btn-success checkbox_btn all_delete"
                             data-toggle="modal" data-target="#exampleModalCenter"
                             data-whatever="You are about to delete selected users">Ok</button>
                     </div>

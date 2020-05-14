@@ -33,6 +33,16 @@ body {
   margin: 20px 0;
   border: 1px solid #f00;
   color: #f00;
+  text-align: center;
+}
+
+.result {
+  display: none;
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #0f0;
+  color: #0f0;
+  text-align: center;
 }
 
 .user-list tbody td>img {
