@@ -1,5 +1,10 @@
+$('.default').show();
+
+$('.form-group, .error, .result, #notcheck, #add_user, #edit_user, #del_user, .add_text, .edit_text, .del_text, .set_active_text, .set_not_active_text, .set_delete_text, .all_active, .all_not_active, .all_delete').hide();
+
 $('.add').click(function () {
-    console.log('click #add');
+    $('.form-group, #add_user, .add_text').show();
+    $('.error, .result').hide();
     $('#first_name').val('');
     $('#last_name').val('');
     $('#status').is(function () {
@@ -11,20 +16,17 @@ $('.add').click(function () {
         }
     });
     $('#role').val('null');
-    $('.form-group, #add_user, .add_text').show();
-    $('#edit_user, .edit_text, .del_text, #set_default, #set_delete, #set_active, #set_not_active, #notcheck, .error').hide();
     $('#add_user').is(function () {
-        $(this).text('Save');
-        $(this).attr('class', 'btn btn-success');
+        $(this)
+            .text('Save')
+            .attr('class', 'btn btn-success');
     });
     $('#close').is(function () {
-        $(this).text('Close');
-        $(this).attr('class', 'btn btn-danger');
+        $(this)
+            .text('Close')
+            .attr('class', 'btn btn-danger');
     });
-    $(this).is(function () {
-        $('.error').hide();
-        $('.result').hide();
-    });
+    console.log('click .add');
 });
 
 
@@ -34,7 +36,6 @@ $('#add_user').click(function () {
     const lname = $('#last_name').val();
     const status = $('#status').val();
     const role = $('#role').val();
-    console.log('click #add_user');
 
     $.ajax({
         url: 'ajax/add_user.php',
@@ -49,13 +50,14 @@ $('#add_user').click(function () {
         dataType: 'html',
         success: function (data) {
             if (data == 'OK') {
-                $('#add_user').show(function () {
+                $(this).show(function () {
                     $('.result')
                         .show()
                         .text('You have successfully added a user.')
                         .attr('id', 'success');
                 });
                 $('.error').hide();
+                updateData();
             } else {
                 $('.result').hide();
                 $('.error').show(function () {
@@ -65,29 +67,25 @@ $('#add_user').click(function () {
             }
         },
     });
+    console.log('click #add_user');
 });
 
 
 
 $('.edit').click(function () {
-    console.log('click .edit');
     const id = $(this).find('.hidden').val();
     $('.form-group, #edit_user, .edit_text').show();
-    $('#add_user, .add_text, .del_text, #set_default, #set_delete, #set_active, #set_not_active, #notcheck, .error').hide();
+    $('.error, .result').hide();
     $('#edit_user').is(function () {
-        $(this).text('Save changes');
-        $(this).attr('class', 'btn btn-success');
+        $(this)
+            .text('Save changes')
+            .attr('class', 'btn btn-success');
     });
     $('#close').is(function () {
-        $(this).text('No');
-        $(this).attr('class', 'btn btn-danger');
+        $(this)
+            .text('No')
+            .attr('class', 'btn btn-danger');
     });
-    $(this).is(function () {
-        $('.error').hide();
-        $('.result').hide();
-    });
-
-    console.log(id);
 
     $.ajax({
         url: 'ajax/get_user_info.php',
@@ -98,7 +96,6 @@ $('.edit').click(function () {
         },
         dataType: 'json',
         success: function (data) {
-            console.log(data);
             $.getJSON("ajax/get_user_info.php?id=" + id, function (data) {
                 const first_name = data.first_name;
                 const last_name = data.last_name;
@@ -108,16 +105,15 @@ $('.edit').click(function () {
                 $('#last_name').val(last_name);
                 $('#status').is(function () {
                     $(this).val(status);
-                    if (status == 0) {
-                        $(this).prop('checked', false);
-                    } else {
-                        $(this).prop('checked', true);
-                    }
+                    if (status == 0) $(this).prop('checked', false);
+                    else $(this).prop('checked', true);
                 });
                 $('#role').val(role);
             });
+            //console.log(data);
         },
     });
+    console.log('click .edit id=' + id);
 });
 
 
@@ -128,8 +124,6 @@ $('#edit_user').click(function () {
     const status = $('#status').val();
     const role = $('#role').val();
     const id = $('#exampleModalCenter').find('.hidden').val();
-    console.log('click #edit_user');
-    console.log(id);
 
     $.ajax({
         url: 'ajax/edit_user.php',
@@ -145,13 +139,14 @@ $('#edit_user').click(function () {
         dataType: 'html',
         success: function (data) {
             if (data == 'UPDATE') {
-                $('#edit_user').show(function () {
+                $(this).show(function () {
                     $('.result')
                         .show()
                         .text('You have successfully edited the user.')
                         .attr('id', 'success');
                 });
                 $('.error').hide();
+                updateData();
             } else {
                 $('.result').hide();
                 $('.error').show(function () {
@@ -161,22 +156,64 @@ $('#edit_user').click(function () {
             }
         },
     });
+    console.log('click #edit_user id=' + id);
 });
 
 
 
 $('.del').click(function () {
-    console.log('click .del');
-    $('.del_text').show();
-    $('.form-group, #add_user, .add_text, #set_default, #set_delete, #set_active, #set_not_active, #notcheck, .error').hide();
+    const id = $(this).find('.hidden').val();
+    $('#del_user, .del_text').show();
+    $('.form-group, .error, .result').hide();
     $('#del_user').is(function () {
-        $(this).text('Delete');
-        $(this).attr('class', 'btn btn-danger');
+        $(this)
+            .text('Delete')
+            .attr('class', 'btn btn-danger');
     });
     $('#close').is(function () {
-        $(this).text('No');
-        $(this).attr('class', 'btn btn-success');
-    })
+        $(this)
+            .text('No')
+            .attr('class', 'btn btn-success');
+    });
+    console.log('click .del id=' + id);
+});
+
+
+
+$('#del_user').click(function () {
+    const id = $('#exampleModalCenter').find('.hidden').val();
+
+    $.ajax({
+        url: 'ajax/del_user.php',
+        type: 'POST',
+        cache: false,
+        data: {
+            id: id,
+        },
+        dataType: 'html',
+        // beforeSend: function() {
+
+        // },
+        success: function (data) {
+            if (data == 'DELETE') {
+                $(this).show(function () {
+                    $('.result')
+                        .show()
+                        .text('You have successfully deleted the user.')
+                        .attr('id', 'success');
+                });
+                $('.error, .del_text').hide();
+                updateData();
+            } else {
+                $('.result').hide();
+                $('.error, #del_user, .del_text').show(function () {
+                    $(this).text(data);
+                    console.log('error');
+                });
+            }
+        },
+    });
+    console.log('click #del_user id=' + id);
 });
 
 
@@ -186,16 +223,11 @@ $('#exampleModalCenter').on('show.bs.modal', function (event) {
     const id = button.data('id');
     $(this).find('.hidden').val(id);
     $('#close, .close').click(function () {
-        $('.add_text, .error, .result').hide();
+        $('.form-group, .error, .result, #notcheck, #add_user, #edit_user, #del_user, .add_text, .edit_text, .del_text, .set_active_text, .set_not_active_text, .set_delete_text, .all_active, .all_not_active, .all_delete').hide();
         console.log('click #close');
     });
     $(this).find('.modal-title').text(recipient);
 });
-
-
-
-$('.set_default').show();
-$('.edit_text, .del_text, #set_default, #set_delete, #set_active, #set_not_active, #notcheck, .error, .result').hide();
 
 
 
@@ -214,30 +246,30 @@ $('select.all').change(function () {
 
     if (0 == $(this).val()) {
         $(this).attr('selected', 'selected');
-        $('.set_default').show();
-        $('.set_not_active, .set_active, .set_delete, .error').hide();
+        $('.default, #notcheck').show();
+        $('.all_not_active, .all_active, .all_delete, .del_text .error').hide();
         $('.btn_ok').is(function () {
             $(this).attr('data-whatever', 'You have not selected any items');
         });
     } else if (1 == $(this).val()) {
         $(this).attr('selected', 'selected');
-        $('.set_active').show();
-        $('.set_delete, .set_not_active, .set_default').hide();
+        $('.all_active, #notcheck').show();
+        $('.all_not_active, .all_delete, .default').hide();
         $('.btn_ok').is(function () {
             $(this).attr('data-whatever', 'You are going to set the status to active for the selected users');
         });
     } else if (2 == $(this).val()) {
         $(this).attr('selected', 'selected');
-        $('.set_not_active').show();
-        $('.set_delete, .set_active, .set_default').hide();
+        $('.all_not_active, #notcheck').show();
+        $('.all_delete, .all_active, .default').hide();
         $('.btn_ok').is(function () {
             $(this).attr('data-whatever', 'You are going to set the status to not active for the selected users');
             $(this).attr('id', 'set_not_active');
         });
     } else if (3 == $(this).val()) {
         $(this).attr('selected', 'selected');
-        $('.set_delete').show();
-        $('.set_not_active, .set_active, .set_default').hide();
+        $('.all_delete, #notcheck').show();
+        $('.all_not_active, .all_active, .default').hide();
         $('.btn_ok').is(function () {
             $(this).attr('data-whatever', 'You are about to delete selected users');
             $(this).attr('disabled', false);
@@ -345,6 +377,7 @@ $('.set_active').click(function () {
                     setInterval('refreshPage()', 1000);
                 });
                 $('.error').hide();
+                updateData();
             } else {
                 $('.error').show(function () {
                     $(this).text(data);
@@ -385,6 +418,7 @@ $('.set_not_active').click(function () {
                     setInterval('refreshPage()', 1000);
                 });
                 $('.error').hide();
+                updateData();
             } else {
                 $('.error').show(function () {
                     $(this).text(data);
@@ -424,9 +458,9 @@ $('.set_delete').click(function () {
                         .text('Ok. User edit')
                         .addClass('success')
                         .attr('id', 'success');
-                    setInterval('refreshPage()', 1000);
                 });
                 $('.error').hide();
+                updateData();
             } else {
                 $('.error').show(function () {
                     $(this).text(data);
@@ -439,44 +473,15 @@ $('.set_delete').click(function () {
 
 
 
-$('#del_user').click(function () {
-    const id = $('#exampleModalCenter').find('.hidden').val();
-    console.log('click #del_user');
-    console.log(id);
-
+function updateData() {
+    // $.get('ajax/db-info.php', function (data) {
+    //     $('#content').html(data);
+    // });
     $.ajax({
-        url: 'ajax/del_user.php',
-        type: 'POST',
-        cache: false,
-        data: {
-            id: id,
-        },
-        dataType: 'html',
-        // beforeSend: function() {
-
-        // },
-        success: function (data) {
-            if (data == 'DELETE') {
-                $('#del_user').show(function () {
-                    $(this)
-                        .text('Ok. User delete')
-                        .addClass('success')
-                        .attr('id', 'success');
-                    // .prop('id', 'success');
-                    // setInterval('refreshPage()', 1000);
-                    setInterval('location.reload()', 1000);
-                });
-                $('.error').hide();
-            } else {
-                $('.error').show(function () {
-                    $(this).text(data);
-                    console.log('error');
-                });
-            }
+        type: "GET",
+        url: 'ajax/db-info.php',
+        success: function (response) {
+            $('#content').html(response);
         },
     });
-});
-
-function refreshPage() {
-    location.reload(true);
-}
+};

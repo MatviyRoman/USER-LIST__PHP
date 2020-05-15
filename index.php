@@ -45,61 +45,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/action.php';
                                         <th><span>Options</span></th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <?php
-$sql = 'SELECT * FROM `users` ORDER BY `id` DESC LIMIT 10';
-$query = $pdo->query($sql);
-while ($row = $query->fetch(PDO::FETCH_OBJ)) {?>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox" name="checkbox" class="check" value="<?=$row->id?>">
-                                        </td>
-                                        <td>
-                                            <a href="?id=<?=$row->id?>" class="user-link">
-                                                <?=$row->first_name, ' ', $row->last_name?>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <div class="status
-                                                <?php if ($row->status) {print 'active';}?>">
-                                            </div>
-                                        </td>
-                                        <td class="text-center">
-                                            <span class="user-subhead">
-                                                <?php
-if ($row->role == 1) {
-    print 'Admin';
-} else {
-    print 'User';
-}?>
-                                            </span>
-                                        </td>
-                                        <td style="width: 20%;">
-                                            <a href="?edit=<?=$row->id?>" class="table-link edit" data-toggle="modal"
-                                                data-target="#exampleModalCenter" data-whatever="User editing"
-                                                data-id="<?=$row->id?>">
-                                                <input type="hidden" name="id" class="hidden" value="<?=$row->id?>">
-                                                <span class="fa-stack">
-                                                    <i class="fa fa-square
-                                                    fa-stack-2x"></i>
-                                                    <i class="fa fa-pencil
-                                                    fa-stack-1x fa-inverse"></i>
-                                                </span>
-                                            </a>
-                                            <a href="?del=<?=$row->id?>" class="table-link
-                                            danger del" data-toggle="modal" data-target="#exampleModalCenter"
-                                                data-whatever="Deleting user" data-id="<?=$row->id?>">
-                                                <input type="hidden" name="id" class="hidden" value="<?=$row->id?>">
-                                                <span class="fa-stack">
-                                                    <i class="fa fa-square
-                                                    fa-stack-2x"></i>
-                                                    <i class="fa fa-trash-o
-                                                    fa-stack-1x fa-inverse"></i>
-                                                </span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <?php }?>
+                                <tbody id="content">
+                                    <?php require $_SERVER['DOCUMENT_ROOT'] . '/ajax/db-info.php';?>
                                 </tbody>
                             </table>
                         </div>
@@ -118,7 +65,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/action.php';
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
-    <script src="./js/main.min.js" deffer></script>
+    <script src="./js/main.js" deffer></script>
 </body>
 
 </html>
