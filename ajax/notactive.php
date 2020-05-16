@@ -6,8 +6,8 @@ $checkbox = trim(filter_var($_POST['checkbox'], FILTER_SANITIZE_STRING));
 
 $error = [];
 
-if ($checkbox == null) {
-    $error[] = 'Please select at least one checkbox';
+if (!$checkbox) {
+    $error[] = 'No users selected';
 } else if (isset($checkbox)) {
     $checkbox_add = explode("##", $checkbox);
     $checkbox_addthis = '';

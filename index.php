@@ -26,30 +26,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/action.php';
             <div class="row">
                 <div class="col-lg-12">
                     <div class="main-box clearfix">
-                        <div class="table-responsive">
-                            <table class="table user-list">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <span>
-                                                <div class="custom-control
-                                                    custom-checkbox">
-                                                    <input type="checkbox" name="checkbox_all[]" id="checkbox_all"
-                                                        value="<?=$row->id?>">
-                                                    <label for="checkbox_all">all</label>
-                                                </div>
-                                            </span>
-                                        </th>
-                                        <th><span>Name</span></th>
-                                        <th class="text-center"><span>Status</span></th>
-                                        <th class="text-center"><span>Role</span></th>
-                                        <th><span>Options</span></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="content">
-                                    <?php require $_SERVER['DOCUMENT_ROOT'] . '/ajax/db-info.php';?>
-                                </tbody>
-                            </table>
+                        <div class="table-responsive" id="content">
+                            <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/ajax/db-info.php';?>
                         </div>
                     </div>
                 </div>

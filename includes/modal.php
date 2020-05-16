@@ -44,13 +44,14 @@
                     <div class="set_notactive">
                         You are going to set the status to not active for the selected users?
                     </div>
+                    <div class="set_delete">
+                        You are about to delete selected users?
+                    </div>
                     <div class="error">
                         <p class="set_default">
                             You have not selected any items
                         </p>
-                        <p class="set_delete">
-                            You are about to delete selected users?
-                        </p>
+
                         <p id="notcheck">
                             You have not selected any checkpoints
                         </p>
