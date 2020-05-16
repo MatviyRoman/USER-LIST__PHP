@@ -1,4 +1,5 @@
 <?php
+header('Cache-Control: no-cache, no-store, must-revalidate');
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/modal.php';
 ?>

@@ -27,9 +27,9 @@ if (empty($id)) {
 } else if ($user->last_name == $last_name) {
     $error = 'This last name is already registered';
 } else if (strlen($first_name) <= 3) {
-    $error = 'Please enter first name';
+    $error = 'Enter the first name must be more than three characters';
 } else if (strlen($last_name) <= 3) {
-    $error = 'Please enter last name';
+    $error = 'Enter the last name must be more than three characters';
 } else if ($role == 0) {
     $error = 'Please enter role';
 }

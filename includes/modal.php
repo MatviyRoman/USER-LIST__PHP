@@ -1,5 +1,5 @@
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
+<div class="bgclose modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -38,33 +38,32 @@
                     <div class="del_text">
                         You really want to delete this user?
                     </div>
-                    <div class="set_active_text" id="set_active">
+                    <div class="set_active">
                         You are going to set the status to active for the selected users?
                     </div>
-                    <div class="set_not_active_text" id="set_not_active">
+                    <div class="set_notactive">
                         You are going to set the status to not active for the selected users?
                     </div>
-                    <div class="error" id="error">
-                        <p class="set_default_text" id="set_default">
+                    <div class="error">
+                        <p class="set_default">
                             You have not selected any items
                         </p>
-                        <p class="set_delete_text" id="set_delete">
+                        <p class="set_delete">
                             You are about to delete selected users?
                         </p>
-                        <p class="notcheck_text" id="notcheck">
+                        <p id="notcheck">
                             You have not selected any checkpoints
                         </p>
                     </div>
                     <div class="result"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success user add_text" id="add_user">Save</button>
-                    <button type="button" class="btn btn-success user edit_text" id="edit_user">Save changes</button>
-                    <button type="button" class="btn btn-danger user del_text" id="del_user">Yes</button>
-                    <button type="button" class="btn btn-success user set_active_text" id="set_active">Yes</button>
-                    <button type="button" class="btn btn-success user set_not_active_text"
-                        id="set_not_active">Yes</button>
-                    <button type="button" class="btn btn-danger user set_delete_text" id="set_delete">Yes</button>
+                    <button type="button" class="btn btn-success add_text" id="add_user">Save</button>
+                    <button type="button" class="btn btn-success edit_text" id="edit_user">Save changes</button>
+                    <button type="button" class="btn btn-danger del_text" id="del_user">Yes</button>
+                    <button type="button" class="btn btn-success set_active" id="active">Yes</button>
+                    <button type="button" class="btn btn-success set_notactive" id="notactive">Yes</button>
+                    <button type="button" class="btn btn-danger set_delete" id="delete">Yes</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal" id="close">Close</button>
                 </div>
             </form>

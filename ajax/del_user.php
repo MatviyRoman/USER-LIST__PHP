@@ -14,8 +14,7 @@ $error = [];
 if (empty($id)) {
     $error = 'id empty';
 } else if (!$user->id == $id) {
-    $error = 'This id not property for
-     this user';
+    $error = 'Such a user does not exist or has already been deleted';
 }
 
 if ($error != []) {

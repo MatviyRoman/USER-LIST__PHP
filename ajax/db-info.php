@@ -36,8 +36,7 @@ if ($row->role == 1) {
                 <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
             </span>
         </a>
-        <a href="?del=<?=$row->id?>" class="table-link
-                                            danger del" data-toggle="modal" data-target="#exampleModalCenter"
+        <a href="?del=<?=$row->id?>" class="table-link danger del" data-toggle="modal" data-target="#exampleModalCenter"
             data-whatever="Deleting user" data-id="<?=$row->id?>">
             <input type="hidden" name="id" class="hidden" value="<?=$row->id?>">
             <span class="fa-stack">
